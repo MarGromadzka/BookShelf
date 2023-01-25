@@ -1,6 +1,6 @@
 import {FlatList, StyleSheet} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import {CATEGORIES} from "../../data/dummy-data";
+import {CATEGORIES} from "../../data/categories";
 import React from "react";
 import CategoryGridTile from "../../Components/CategoryGridTile";
 import { CategoriesNavigationProps } from "../../App";

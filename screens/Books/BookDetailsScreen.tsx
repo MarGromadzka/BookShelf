@@ -8,27 +8,19 @@ import {
   CategoriesStackParamList
 } from "../../App";
 import { HeartButton } from "../../Components/FillableButton";
-import {CATEGORIES} from "../../data/dummy-data";
+import {CATEGORIES} from "../../data/categories";
 import {FavouritesContext} from "../../store/context/favourites-context";
 import {BooksContext} from "../../store/context/books-context";
 import {Book} from "../../models/book";
 import Detail from "../../Components/Detail";
 
-const complexityEmoteMap = {
-  'simple': "\u{1F604}",
-  'challenging': "\u{1F914}",
-  'hard': '\u{1F613}',
-}
-const affordabilityEmoteMap = {
-  'affordable': '\u0024',
-  'pricey': '\u0024\u0024',
-  'luxurious': '\u0024\u0024\u0024',
-}
 
 function BookDetailsScreen() {
   const navigation = useNavigation<CategoriesNavigationProps | BooksNavigationProps>();
   const route = useRoute<RouteProp<CategoriesStackParamList, "BookDetails"> | RouteProp<BooksStackParamList, "BookDetails">>();
   const favBooksContext = useContext(FavouritesContext);
+  const booksContext = useContext(BooksContext);
+
 
   const books = useContext(BooksContext).books;
 
@@ -59,6 +51,11 @@ function BookDetailsScreen() {
     }
   }
 
+  function deleteBook() {
+    booksContext.removeBook(bookId)
+    navigation.goBack()
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -75,7 +72,7 @@ function BookDetailsScreen() {
           <Text style={styles.bookParam}>{book.title}</Text>
         </Detail>
         <Detail name="Author">
-          <Text style={styles.bookParam}>{book.author} &#128338;</Text>
+          <Text style={styles.bookParam}>{book.author}</Text>
         </Detail>
         <Detail name="Categories">
           {
@@ -96,6 +93,9 @@ function BookDetailsScreen() {
         </Detail>
         <TouchableOpacity style={[styles.button, {backgroundColor: '#C2B280'}]} onPress={() => navigation.navigate("CreateModifyBook", {book: book as Book})}>
           <Text style={styles.buttonText}>Modify</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, {backgroundColor: '#b46004'}]} onPress={() => deleteBook()}>
+          <Text style={styles.buttonText}>Delete</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

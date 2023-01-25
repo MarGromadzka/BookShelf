@@ -1,6 +1,6 @@
 import {useContext, useLayoutEffect} from "react";
 import {Alert} from "react-native";
-import {CATEGORIES} from "../../data/dummy-data";
+import {CATEGORIES} from "../../data/categories";
 import {useNavigation, useRoute, RouteProp} from "@react-navigation/native";
 import {BooksStackParamList, CategoriesNavigationProps, CategoriesStackParamList} from "../../App";
 import BooksList from "../../Components/BooksList";

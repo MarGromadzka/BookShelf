@@ -1,6 +1,6 @@
 import { Text, View, Pressable, Image, StyleSheet, Platform } from "react-native";
-import Book from "../models/book";
-import {CATEGORIES} from "../data/dummy-data";
+import {Book} from "../models/book";
+import {CATEGORIES} from "../data/categories";
 
 function BookItem({book, onPress}: {book: Book, onPress: () => void}) {
   return (

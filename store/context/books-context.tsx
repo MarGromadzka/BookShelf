@@ -1,16 +1,49 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
 import {Book, BookTemplate} from "../../models/book";
-import {BOOKS} from "../../data/dummy-data";
+// import {BOOKS} from "../../data/dummy-data";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const storeData = async (value: Book[]) => {
+    console.warn('storeData');
+    try {
+        const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem("books", jsonValue);
+    } catch (e) {
+        console.error("books storeData error!");
+    }
+}
+
+const getData = async () => {
+    try {
+        const jsonValue: string | null = await AsyncStorage.getItem("books");
+        return jsonValue !== null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+        console.error("books getData error!");
+    }
+}
 
 export const BooksContext = createContext({
-    books: BOOKS as Book[],
+    books: [] as Book[],
     addBook: (book: BookTemplate) => {},
     modifyBook: (id: string, book: BookTemplate) => {},
     removeBook: (id: string) => {},
 });
 
 function BooksContextProvider({children} : {children: any}) {
-    const [books, setBooks] = useState(BOOKS as Book[]);
+    const [books, setBooks] = useState<Book[]>([]);
+
+    useEffect(() => {
+        async function loadAll() {
+            const data: Book[] = await getData();
+            if (data)
+                setBooks(data);
+        }
+        loadAll();
+    }, []);
+
+    useEffect(() => {
+        storeData(books);
+    }, [books]);
 
     function addBook(bookTemplate: BookTemplate) {
         setBooks((currentBooks: typeof books) => [...currentBooks, {...bookTemplate, id: Math.random().toString()}])

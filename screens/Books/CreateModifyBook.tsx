@@ -6,7 +6,7 @@ import {RouteProp, useNavigation, useRoute} from "@react-navigation/native";
 import {BookTemplate} from "../../models/book";
 import {BooksContext} from "../../store/context/books-context";
 import {Modalize} from "react-native-modalize";
-import {CATEGORIES} from "../../data/dummy-data";
+import {CATEGORIES} from "../../data/categories";
 
 
 export type ValidValuePair = {
@@ -185,7 +185,7 @@ export default function CreateModifyBook() {
     }}
   />
 
-  const categoriesComponent = <View style={styles.propertyContainer}>
+  const categoriesComponent = <View style={styles.propertyContainer} key="categories">
     <Text style={styles.propertyLabel}>Categories</Text>
     <TouchableOpacity
       style={styles.categoriesButton}
