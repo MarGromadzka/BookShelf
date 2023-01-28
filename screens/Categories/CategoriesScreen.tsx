@@ -26,6 +26,7 @@ function CategoriesScreen() {
 
 export default CategoriesScreen;
 
+
 const styles = StyleSheet.create({
   list: {
     paddingTop: 10,

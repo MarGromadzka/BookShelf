@@ -27,16 +27,6 @@ function FillableButton({onPress, isActive, emptyIconStyle, filledIconStyle, fil
   );
 }
 
-export function StarButton({onPress, isActive}: {onPress: () => any, isActive: boolean}) {
-  return FillableButton({
-    onPress: onPress,
-    isActive: isActive,
-    emptyIconStyle: 'star-outline',
-    filledIconStyle: 'star',
-    filledIconColor: 'gold',
-  })
-}
-
 export function HeartButton({onPress, isActive}: {onPress: () => any, isActive: boolean}) {
   return FillableButton({
     onPress: onPress,

@@ -4,7 +4,6 @@ import {Book, BookTemplate} from "../../models/book";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const storeData = async (value: Book[]) => {
-    console.warn('storeData');
     try {
         const jsonValue = JSON.stringify(value);
         await AsyncStorage.setItem("books", jsonValue);

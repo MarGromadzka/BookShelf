@@ -217,7 +217,7 @@ export default function CreateModifyBook() {
   />
 
   const buttonsComponent = <View key="buttons" style={styles.buttons}>
-    <TouchableOpacity style={[styles.button, {backgroundColor: cancelColor}]} onPress={navigation.goBack}>
+    <TouchableOpacity style={[styles.button, {backgroundColor: '#b46004'}]} onPress={navigation.goBack}>
       <Text style={styles.buttonText}>Cancel</Text>
     </TouchableOpacity>
     <TouchableOpacity style={[styles.button, {backgroundColor: '#C2B280'}]} onPress={submitPressed}>
